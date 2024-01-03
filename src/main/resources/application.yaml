@@ -1,0 +1,83 @@
+#-----------------------------------
+--- # Application
+#-----------------------------------
+
+spring:
+  application:
+    name: TALLENT-CENTER
+  profiles:
+    active:
+      - "@spring.profiles.active@"
+  main:
+    lazy-initialization: false
+  config:
+    import: file:env.properties
+server:
+  port: 8081
+
+--- ## Production
+
+spring:
+  config:
+    activate:
+      on-profile: "production"
+  main:
+    lazy-initialization: true
+
+#-----------------------------------
+--- # i18n & L10n
+#-----------------------------------
+
+spring:
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages
+
+#-----------------------------------
+--- # Logging
+#-----------------------------------
+
+logging:
+  level:
+    com:
+      tujuhsembilan: TRACE
+
+--- ## Production
+
+spring:
+  config:
+    activate:
+      on-profile: "production"
+logging:
+  level:
+    com:
+      tujuhsembilan: INFO
+
+#-----------------------------------
+--- # Miscellanous
+#-----------------------------------
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+#-----------------------------------
+--- # Database
+#-----------------------------------
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_DATABASE}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true # Set to true if you want to see SQL queries in logs properties:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+# # -----------------------------------
+# --- #
+# # -----------------------------------
