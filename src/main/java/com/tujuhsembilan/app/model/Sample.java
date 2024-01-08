@@ -26,10 +26,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table
+@Table(name = "sample_model")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class SampleModel {
+public class Sample {
 
   @Id
   @Column

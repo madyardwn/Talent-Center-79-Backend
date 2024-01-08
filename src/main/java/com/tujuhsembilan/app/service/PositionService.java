@@ -16,7 +16,7 @@ public class PositionService {
     private PositionRepository positionRepository;
 
     public List<PositionDto> getMasterPosisiTalent() {
-        List<PositionModel> posisiTalent = positionRepository.findAll(); // pemanggilan List dari Position Model
+        List<Position> posisiTalent = positionRepository.findAll(); // pemanggilan List dari Position Model
 
         return posisiTalent.stream()
                 .map(positionModel -> {

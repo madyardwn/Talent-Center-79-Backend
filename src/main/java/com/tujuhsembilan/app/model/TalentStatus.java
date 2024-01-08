@@ -1,6 +1,8 @@
 package com.tujuhsembilan.app.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -11,9 +13,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -25,24 +28,25 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "talent_metadata")
+@Table(name = "talent_status")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class TalentMetadataModel {
+
+public class TalentStatus {
 
     @Id
-    @OneToOne
-    @JoinColumn(name = "talent_id", referencedColumnName = "talent_id")
-    private TalentModel talent;
+    @Column(name = "talent_status_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID talentStatusId;
 
-    @Column(name = "cv_counter", columnDefinition = "INTEGER")
-    private Integer cvCounter;
+    @OneToMany(mappedBy = "talentStatus")
+    private List<Talent> talents;
 
-    @Column(name = "profile_counter", columnDefinition = "INTEGER")
-    private Integer profileCounter;
+    @Column(name = "talent_status_name", length = 50)
+    private String talentLevelName;
 
-    @Column(name = "total_project_completed", columnDefinition = "SMALLINT")
-    private Short totalProjectCompleted;
+    @Column(name = "is_active")
+    private Boolean isActive;
 
     @Column(name = "created_by")
     @CreatedBy

@@ -16,6 +16,8 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -28,22 +30,29 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "employee_status")
+@Table(name = "skillset")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 
-public class EmployeeStatusModel {
+public class Skillset {
 
     @Id
-    @Column(name = "employee_status_id")
+    @Column(name = "skillset_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID employeeStatusId;
+    private UUID skillsetId;
 
-    @OneToMany(mappedBy = "employeeStatus")
-    private List<TalentModel> talents;
+    @ManyToOne
+    @JoinColumn(name = "skillset_type_id", referencedColumnName = "skillset_type_id")
+    private SkillsetType skillsetType;
 
-    @Column(name = "employee_status_name", length = 50)
-    private String talentLevelName;
+    @OneToMany(mappedBy = "skillset")
+    private List<MostFrequentSkillset> mostFrequentSkillsets;
+
+    @Column(name = "skillset_name", length = 50)
+    private String skillsetName;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
 
     @Column(name = "created_by")
     @CreatedBy

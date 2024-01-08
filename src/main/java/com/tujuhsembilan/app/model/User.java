@@ -30,7 +30,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "user")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class UserModel {
+public class User {
 
   @Id
   @Column(name = "user_id")
@@ -39,10 +39,10 @@ public class UserModel {
 
   @ManyToOne
   @JoinColumn(name = "role_id", referencedColumnName = "role_id")
-  private RoleModel role;
+  private Role role;
 
   @OneToOne(mappedBy = "user")
-  private ClientModel client;
+  private Client client;
 
   @Column(name = "username", length = 50)
   private String username;

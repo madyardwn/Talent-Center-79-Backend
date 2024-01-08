@@ -26,7 +26,7 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
 import com.toedter.spring.hateoas.jsonapi.JsonApiConfiguration;
-import com.tujuhsembilan.app.model.SampleModel;
+import com.tujuhsembilan.app.model.Sample;
 import com.tujuhsembilan.app.repository.SampleRepository;
 
 import lib.i18n.utility.MessageUtil;
@@ -48,7 +48,7 @@ public class ApplicationConfig {
 
       if (sampleRepo.count() <= 0) {
         for (int i = 0; i < 100; i++) {
-          sampleRepo.save(SampleModel.builder()
+          sampleRepo.save(Sample.builder()
               .code(String.format("%08d", i) + DigestUtils.sha256Hex(String.valueOf(i)).substring(0, 24))
               .description("Blabla")
               .date(LocalDateTime.now().minus(i, ChronoUnit.DAYS))

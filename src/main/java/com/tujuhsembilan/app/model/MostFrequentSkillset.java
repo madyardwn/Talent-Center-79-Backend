@@ -32,7 +32,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 
-public class MostFrequentSkillsetModel {
+public class MostFrequentSkillset {
 
     @Id
     @Column(name = "most_frequent_skillset_id")
@@ -41,7 +41,7 @@ public class MostFrequentSkillsetModel {
 
     @ManyToOne
     @JoinColumn(name = "skillset_id", referencedColumnName = "skillset_id")
-    private SkillsetModel skillset;
+    private Skillset skillset;
 
     @Column(name = "counter", columnDefinition = "INTEGER")
     private Integer counter;

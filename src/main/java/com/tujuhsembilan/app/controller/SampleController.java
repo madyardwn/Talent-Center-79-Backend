@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tujuhsembilan.app.model.SampleModel;
+import com.tujuhsembilan.app.model.Sample;
 import com.tujuhsembilan.app.repository.SampleRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -44,12 +44,12 @@ public class SampleController {
   }
 
   @PostMapping
-  public ResponseEntity<?> post(@RequestBody SampleModel body) {
+  public ResponseEntity<?> post(@RequestBody Sample body) {
     return ResponseEntity.status(HttpStatus.CREATED).body(RepresentationModel.of(repo.save(body)));
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<?> put(@PathVariable("id") String id, @RequestBody SampleModel body) {
+  public ResponseEntity<?> put(@PathVariable("id") String id, @RequestBody Sample body) {
     var entity = repo.findById(UUID.fromString(id));
     if (entity.isEmpty()) {
       throw new EntityNotFoundException();

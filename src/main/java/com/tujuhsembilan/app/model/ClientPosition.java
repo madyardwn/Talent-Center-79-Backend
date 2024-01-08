@@ -30,7 +30,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "client_position")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class ClientPositionModel {
+public class ClientPosition {
 
     @Id
     @Column(name = "client_position_id")
@@ -38,7 +38,7 @@ public class ClientPositionModel {
     private UUID clientPositionId;
 
     @OneToMany(mappedBy = "clientPosition")
-    private List<ClientModel> clients;
+    private List<Client> clients;
 
     @Column(name = "client_position_name", length = 100)
     private String clientPositionName;

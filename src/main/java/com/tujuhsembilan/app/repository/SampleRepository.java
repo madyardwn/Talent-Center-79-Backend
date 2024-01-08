@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.tujuhsembilan.app.model.SampleModel;
+import com.tujuhsembilan.app.model.Sample;
 
-public interface SampleRepository extends JpaRepository<SampleModel, UUID> {
+public interface SampleRepository extends JpaRepository<Sample, UUID> {
 }

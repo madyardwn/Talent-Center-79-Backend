@@ -1,15 +1,5 @@
 package com.tujuhsembilan.app.model;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.UUID;
-
-import org.springframework.data.annotation.CreatedBy;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -18,41 +8,47 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "skillset")
+@Table(name = "talent_request")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-
-public class SkillsetModel {
+public class TalentRequest {
 
     @Id
-    @Column(name = "skillset_id")
+    @Column(name = "talent_request_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID skillsetId;
+    private UUID talentRequestStatusId;
 
     @ManyToOne
-    @JoinColumn(name = "skillset_type_id", referencedColumnName = "skillset_type_id")
-    private SkillsetTypeModel skillsetType;
+    @JoinColumn(name = "talent_wishlist_id", referencedColumnName = "talent_wishlist_id")
+    private TalentWishlist talentWishlist;
 
-    @OneToMany(mappedBy = "skillset")
-    private List<MostFrequentSkillsetModel> mostFrequentSkillsets;
+    @ManyToOne
+    @JoinColumn(name = "talent_request_status_id", referencedColumnName = "talent_request_status_id")
+    private TalentRequestStatus talentRequestStatus;
 
-    @Column(name = "skillset_name", length = 50)
-    private String skillsetName;
+    @Column(name = "request_reject_reason", length = 255)
+    private String requestRejectReason;
 
-    @Column(name = "is_active")
-    private Boolean isActive;
+    @Column(name = "request_date", columnDefinition = "DATE")
+    private LocalDateTime requestDate;
 
     @Column(name = "created_by")
     @CreatedBy

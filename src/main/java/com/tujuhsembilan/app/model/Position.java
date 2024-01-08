@@ -34,7 +34,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "position") // untuk menentukan tabel mananya dalam database
 @Entity // untuk menandakan bahwa model ini adalah sebuah entital SQL
 @EntityListeners(AuditingEntityListener.class) // untuk otomatis menangani audit data (created and updated)
-public class PositionModel {
+public class Position {
     @Id // initialize untuk ID
     @Column(name = "position_id") // nama kolom dalam database
     @GeneratedValue(strategy = GenerationType.AUTO) // otomatis generate value untuk kolom ID
@@ -42,7 +42,7 @@ public class PositionModel {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "talent_position", joinColumns = @JoinColumn(name = "position_id"), inverseJoinColumns = @JoinColumn(name = "talent_id"))
-    private List<TalentModel> talents;
+    private List<Talent> talents;
 
     @Column(name = "position_name", length = 50)
     private String positionName;

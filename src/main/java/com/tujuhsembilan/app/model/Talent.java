@@ -37,7 +37,7 @@ import com.tujuhsembilan.app.model.enums.Gender;
 @Table(name = "talent")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class TalentModel {
+public class Talent {
 
     @Id
     @Column(name = "talent_id")
@@ -46,24 +46,24 @@ public class TalentModel {
 
     @ManyToOne
     @JoinColumn(name = "talent_level_id", referencedColumnName = "talent_level_id")
-    private TalentLevelModel talentLevel;
+    private TalentLevel talentLevel;
 
     @ManyToOne
     @JoinColumn(name = "talent_status_id", referencedColumnName = "talent_status_id")
-    private TalentStatusModel talentStatus;
+    private TalentStatus talentStatus;
 
     @ManyToOne
     @JoinColumn(name = "employee_status_id", referencedColumnName = "employee_status_id")
-    private EmployeeStatusModel employeeStatus;
+    private EmployeeStatus employeeStatus;
 
     @OneToOne(mappedBy = "talent")
-    private TalentMetadataModel talentMetadata;
+    private TalentMetadata talentMetadata;
 
     @OneToMany(mappedBy = "talent")
-    private List<TalentWishlistModel> talentWishlist;
+    private List<TalentWishlist> talentWishlist;
 
     @ManyToMany(mappedBy = "talents")
-    private List<PositionModel> positions;
+    private List<Position> positions;
 
     @Column(name = "talent_name", length = 255)
     private String talentName;

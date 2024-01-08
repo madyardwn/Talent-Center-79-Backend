@@ -28,28 +28,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "skillset_type")
+@Table(name = "employee_status")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 
-public class SkillsetTypeModel {
+public class EmployeeStatus {
 
     @Id
-    @Column(name = "skillset_type_id")
+    @Column(name = "employee_status_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID skillsetTypeId;
+    private UUID employeeStatusId;
 
-    @OneToMany(mappedBy = "skillsetType")
-    private List<SkillsetModel> skillsets;
+    @OneToMany(mappedBy = "employeeStatus")
+    private List<Talent> talents;
 
-    @Column(name = "skillset_type_name", length = 50)
-    private String skillsetName;
-
-    @Column(name = "is_programming_skill")
-    private Boolean isProgrammingSkill;
-
-    @Column(name = "is_active")
-    private Boolean isActive;
+    @Column(name = "employee_status_name", length = 50)
+    private String talentLevelName;
 
     @Column(name = "created_by")
     @CreatedBy

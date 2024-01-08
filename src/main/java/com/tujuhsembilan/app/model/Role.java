@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -18,7 +19,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,22 +28,21 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "talent_status")
+@Table(name = "role")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+public class Role {
 
-public class TalentStatusModel {
+    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    private List<User> users;
 
     @Id
-    @Column(name = "talent_status_id")
+    @Column(name = "role_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID talentStatusId;
+    private UUID roleId;
 
-    @OneToMany(mappedBy = "talentStatus")
-    private List<TalentModel> talents;
-
-    @Column(name = "talent_status_name", length = 50)
-    private String talentLevelName;
+    @Column(name = "role_name", length = 50)
+    private String roleName;
 
     @Column(name = "is_active")
     private Boolean isActive;
