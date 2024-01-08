@@ -1,6 +1,7 @@
 package com.tujuhsembilan.app.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -9,12 +10,16 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,6 +39,10 @@ public class PositionModel {
     @Column(name = "position_id") // nama kolom dalam database
     @GeneratedValue(strategy = GenerationType.AUTO) // otomatis generate value untuk kolom ID
     private UUID positionId; // Akses(modifier) ; tipe data ; nama variabel
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "talent_position", joinColumns = @JoinColumn(name = "position_id"), inverseJoinColumns = @JoinColumn(name = "talent_id"))
+    private List<TalentModel> talents;
 
     @Column(name = "position_name", length = 50)
     private String positionName;
