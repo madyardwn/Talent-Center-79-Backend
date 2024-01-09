@@ -16,7 +16,8 @@ public class GenderConverter implements AttributeConverter<Gender, Character> {
 
     @Override
     public Gender convertToEntityAttribute(Character gender) {
-        return Arrays.stream(Gender.values())
+        return Arrays
+                .stream(Gender.values())
                 .filter(s -> Objects.equals(s.getValue(), gender))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);

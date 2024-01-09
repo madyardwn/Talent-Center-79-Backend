@@ -11,22 +11,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class WebMvcConfig implements WebMvcConfigurer {
 
-  @Override
-  public void addCorsMappings(CorsRegistry cors) {
-    // @formatter:off
+	@Override
+	public void addCorsMappings(CorsRegistry cors) {
+	// @formatter:off
     cors
-      .addMapping("/**")
+      	.addMapping("/**")
         .allowedOriginPatterns("*")
         .allowedMethods("*")
         .allowedHeaders("*")
         .allowCredentials(true)
     ;
     // @formatter:on
-  }
+	}
 
-  @Override
-  public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-    configurer.defaultContentType(new MediaType("application", "vnd.api+json"), MediaType.APPLICATION_JSON);
-  }
+	@Override
+	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+		configurer.defaultContentType(new MediaType("application", "vnd.api+json"), MediaType.APPLICATION_JSON);
+	}
 
 }

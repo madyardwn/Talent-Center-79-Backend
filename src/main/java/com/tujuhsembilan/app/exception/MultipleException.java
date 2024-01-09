@@ -8,17 +8,17 @@ import lombok.Getter;
 
 public class MultipleException extends RuntimeException {
 
-  @Getter
-  private final List<Exception> exceptions;
+	@Getter
+	private final List<Exception> exceptions;
 
-  public MultipleException(Exception... exceptions) {
-    super();
-    this.exceptions = Collections.unmodifiableList(Arrays.asList(exceptions));
-  }
+	public MultipleException(Exception... exceptions) {
+		super();
+		this.exceptions = Collections.unmodifiableList(Arrays.asList(exceptions));
+	}
 
-  public MultipleException(String message, Exception... exceptions) {
-    super(message);
-    this.exceptions = Collections.unmodifiableList(Arrays.asList(exceptions));
-  }
+	public MultipleException(String message, Exception... exceptions) {
+		super(message);
+		this.exceptions = Collections.unmodifiableList(Arrays.asList(exceptions));
+	}
 
 }

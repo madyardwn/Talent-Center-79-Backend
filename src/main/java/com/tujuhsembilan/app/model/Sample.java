@@ -31,31 +31,31 @@ import lombok.NoArgsConstructor;
 @EntityListeners(AuditingEntityListener.class)
 public class Sample {
 
-  @Id
-  @Column
-  @GeneratedValue(strategy = GenerationType.UUID)
-  private UUID id;
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.UUID)
+	private UUID id;
 
-  @Column
-  @Size(min = 8, max = 32)
-  private String code;
+	@Column
+	@Size(min = 8, max = 32)
+	private String code;
 
-  @Column(columnDefinition = "text")
-  private String description;
+	@Column(columnDefinition = "text")
+	private String description;
 
-  @Column
-  private LocalDateTime date;
+	@Column
+	private LocalDateTime date;
 
-  // --- AUDIT ---
+	// --- AUDIT ---
 
-  @Column
-  @CreatedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  private Long createdDate;
+	@Column
+	@CreatedDate
+	@Temporal(TemporalType.TIMESTAMP)
+	private Long createdDate;
 
-  @Column
-  @LastModifiedDate
-  @Temporal(TemporalType.TIMESTAMP)
-  private Long lastModifiedDate;
+	@Column
+	@LastModifiedDate
+	@Temporal(TemporalType.TIMESTAMP)
+	private Long lastModifiedDate;
 
 }
