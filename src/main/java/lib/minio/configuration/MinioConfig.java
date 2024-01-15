@@ -10,7 +10,7 @@ import io.minio.MinioClient;
 @Configuration
 public class MinioConfig {
   @Bean
-  public MinioClient minioClient(MinioProp props) {
+  MinioClient minioClient(MinioProp props) {
     return MinioClient.builder()
         .endpoint(props.getUrl())
         .credentials(props.getUsername(), props.getPassword())

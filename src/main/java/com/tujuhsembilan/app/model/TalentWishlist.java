@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -31,7 +32,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "talent_wishlist")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class TalentWishlist {
+public class TalentWishlist implements Serializable {
 
     @Id
     @Column(name = "talent_wishlist_id")

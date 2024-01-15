@@ -42,7 +42,7 @@ public class ApplicationConfig {
 	private final MessageUtil msg;
 
 	@Bean
-	public ApplicationRunner init(SampleRepository sampleRepo) {
+	ApplicationRunner init(SampleRepository sampleRepo) {
 		return args -> {
 			log.info(msg.get("application.init"));
 
@@ -61,12 +61,12 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public ModelMapper modelMapper() {
+	ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
 
 	@Bean
-	public SecurityFilterChain configure(HttpSecurity http) throws Exception {
+	SecurityFilterChain configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeHttpRequests(config -> config
 						.anyRequest().permitAll())
@@ -75,7 +75,7 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
+	Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
 		return builder -> {
 			builder.deserializers(new LocalDateDeserializer(DateTimeFormatter.ISO_LOCAL_DATE));
 			builder.serializers(new LocalDateSerializer(DateTimeFormatter.ISO_DATE));
@@ -89,7 +89,7 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	public JsonApiConfiguration jsonApiConfiguration() {
+	JsonApiConfiguration jsonApiConfiguration() {
 		return new JsonApiConfiguration()
 				.withObjectMapperCustomizer(
 						objectMapper -> {

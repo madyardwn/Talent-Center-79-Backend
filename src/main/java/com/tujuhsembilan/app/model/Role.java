@@ -1,5 +1,6 @@
 package com.tujuhsembilan.app.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -9,6 +10,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,9 +34,10 @@ import lombok.NoArgsConstructor;
 @Table(name = "role")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Role {
+public class Role implements Serializable {
 
     @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<User> users;
 
     @Id

@@ -1,5 +1,6 @@
 package com.tujuhsembilan.app.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -28,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "talent_metadata")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class TalentMetadata {
+public class TalentMetadata implements Serializable {
 
     @Id
     @OneToOne

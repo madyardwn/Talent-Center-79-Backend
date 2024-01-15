@@ -1,5 +1,6 @@
 package com.tujuhsembilan.app.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -30,7 +31,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "client_position")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class ClientPosition {
+public class ClientPosition implements Serializable {
 
     @Id
     @Column(name = "client_position_id")

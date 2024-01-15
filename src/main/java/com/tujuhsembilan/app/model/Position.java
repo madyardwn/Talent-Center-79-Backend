@@ -1,5 +1,6 @@
 package com.tujuhsembilan.app.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -31,10 +32,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // Anotasi ini membuat konstruktor tanpa argumen untuk kelas yang diannotasi
 @AllArgsConstructor // Anotasi ini membuat konstruktor dengan parameter untuk setiap atribut dalam
                     // kelas yang diannotasi
-@Table(name = "position") // untuk menentukan tabel mananya dalam database
+@Table(name = "position", schema = "public") // untuk menandakan bahwa model ini adalah sebuah tabel SQL
 @Entity // untuk menandakan bahwa model ini adalah sebuah entital SQL
 @EntityListeners(AuditingEntityListener.class) // untuk otomatis menangani audit data (created and updated)
-public class Position {
+public class Position implements Serializable {
     @Id // initialize untuk ID
     @Column(name = "position_id") // nama kolom dalam database
     @GeneratedValue(strategy = GenerationType.AUTO) // otomatis generate value untuk kolom ID

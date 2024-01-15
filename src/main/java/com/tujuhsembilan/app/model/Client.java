@@ -13,6 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +39,7 @@ import com.tujuhsembilan.app.model.enums.Gender;
 @Table(name = "client")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Client {
+public class Client implements Serializable {
 
     @Id
     @Column(name = "client_id")

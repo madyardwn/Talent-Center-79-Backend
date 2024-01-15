@@ -1,5 +1,6 @@
 package com.tujuhsembilan.app.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -31,8 +32,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "talent_status")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-
-public class TalentStatus {
+public class TalentStatus implements Serializable {
 
     @Id
     @Column(name = "talent_status_id")

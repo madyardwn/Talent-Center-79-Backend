@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -29,7 +30,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "talent_request_status")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class TalentRequestStatus {
+public class TalentRequestStatus implements Serializable {
 
     @Id
     @Column(name = "talent_request_status_id")

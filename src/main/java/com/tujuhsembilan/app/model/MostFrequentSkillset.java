@@ -1,5 +1,6 @@
 package com.tujuhsembilan.app.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -32,7 +33,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 
-public class MostFrequentSkillset {
+public class MostFrequentSkillset implements Serializable {
 
     @Id
     @Column(name = "most_frequent_skillset_id")

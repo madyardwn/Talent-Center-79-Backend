@@ -13,15 +13,12 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addCorsMappings(CorsRegistry cors) {
-	// @formatter:off
-    cors
-      	.addMapping("/**")
-        .allowedOriginPatterns("*")
-        .allowedMethods("*")
-        .allowedHeaders("*")
-        .allowCredentials(true)
-    ;
-    // @formatter:on
+		cors
+				.addMapping("/**")
+				.allowedOriginPatterns("*")
+				.allowedMethods("*")
+				.allowedHeaders("*")
+				.allowCredentials(true);
 	}
 
 	@Override
