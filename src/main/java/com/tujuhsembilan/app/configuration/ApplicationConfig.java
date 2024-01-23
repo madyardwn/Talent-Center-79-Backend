@@ -13,10 +13,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.web.SecurityFilterChain;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -36,13 +32,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@EnableWebSecurity
 public class ApplicationConfig {
 
 	private final MessageUtil msg;
 
 	@Bean
-	ApplicationRunner init(SampleRepository sampleRepo) {
+	public ApplicationRunner init(SampleRepository sampleRepo) {
 		return args -> {
 			log.info(msg.get("application.init"));
 
@@ -61,21 +56,12 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	ModelMapper modelMapper() {
+	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
 
 	@Bean
-	SecurityFilterChain configure(HttpSecurity http) throws Exception {
-		http
-				.authorizeHttpRequests(config -> config
-						.anyRequest().permitAll())
-				.csrf(AbstractHttpConfigurer::disable);
-		return http.build();
-	}
-
-	@Bean
-	Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
+	public Jackson2ObjectMapperBuilderCustomizer jsonCustomizer() {
 		return builder -> {
 			builder.deserializers(new LocalDateDeserializer(DateTimeFormatter.ISO_LOCAL_DATE));
 			builder.serializers(new LocalDateSerializer(DateTimeFormatter.ISO_DATE));
@@ -89,7 +75,7 @@ public class ApplicationConfig {
 	}
 
 	@Bean
-	JsonApiConfiguration jsonApiConfiguration() {
+	public JsonApiConfiguration jsonApiConfiguration() {
 		return new JsonApiConfiguration()
 				.withObjectMapperCustomizer(
 						objectMapper -> {
